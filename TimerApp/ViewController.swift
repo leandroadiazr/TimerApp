@@ -13,10 +13,14 @@ class ViewController: UIViewController {
     
     let appTitle            = CustomLabel(backgroundColor: .clear, fontSize: 40, textColor: .systemBlue, textAlignment: .center, title: "Timer App")
     let counterContainer    = CustomContainerView(backgroundColor: .systemBlue)
-    let stackView           = UIStackView()
+    let timerStackView      = UIStackView()
+    let btnStackView        = UIStackView()
     let hourLabel           = CustomLabel(backgroundColor: .clear, fontSize: 20, textColor: .white, textAlignment: .center, title: "")
     let minuteLabel         = CustomLabel(backgroundColor: .clear, fontSize: 20, textColor: .white, textAlignment: .center, title: "")
     let secondsLabel        = CustomLabel(backgroundColor: .clear, fontSize: 20, textColor: .white, textAlignment: .center, title: "")
+    let hIndicator          = CustomLabel(backgroundColor: .clear, fontSize: 18, textColor: .systemBackground, textAlignment: .center, title: "H:")
+    let mIndicator          = CustomLabel(backgroundColor: .clear, fontSize: 18, textColor: .systemBackground, textAlignment: .center, title: "M:")
+    let sIndicator          = CustomLabel(backgroundColor: .clear, fontSize: 18, textColor: .systemBackground, textAlignment: .center, title: "S:")
     let timePicker          = UIPickerView()
     let startTimerBtn       = CustomButton(backgroundColor: .systemBlue, title: "Start")
     let stopTimerBtn        = CustomButton(backgroundColor: .systemBlue, title: "Stop")
@@ -29,7 +33,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        appTitle.text = "Timer App"
+        //        appTitle.text = "Timer App"
         
         startButton()
         stopButton()
@@ -118,7 +122,6 @@ class ViewController: UIViewController {
     }
     
     @objc func stopTimer() {
-        print("Time stopped")
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.timer.invalidate()
         }
@@ -127,7 +130,8 @@ class ViewController: UIViewController {
     @objc func resetTimer() {
         timePicker.isHidden = false
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.timer.invalidate()
+            guard let running = self.timer else { return }
+            running.invalidate()
         }
         hourLabel.text = "0"
         minuteLabel.text = "0"
@@ -135,28 +139,56 @@ class ViewController: UIViewController {
         hCounter = 0
         minCounter = 0
         secCounter = 0
-        print("Time reseted")
     }
     
     
     
     func configureStackView() {
-        stackView.axis = .horizontal
-        stackView.distribution = .equalCentering
+        let hStack = [ timerStackView, btnStackView]
+        for stack in hStack {
+            stack.axis = .horizontal
+            stack.distribution = .equalCentering
+            stack.translatesAutoresizingMaskIntoConstraints = false
+            
+        }
+        
+//        timerStackView.axis = .horizontal
+//        timerStackView.distribution = .equalCentering
+//        
+//        timerStackView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        btnStackView.axis = .horizontal
+//        btnStackView.distribution = .equalCentering
+//        
+//        btnStackView.backgroundColor = .black
+//        btnStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
     }
     
     func configureUI() {
         view.addSubview(counterContainer)
         view.addSubview(appTitle)
-        view.addSubview(stackView)
-        stackView.addArrangedSubview(hourLabel)
-        stackView.addArrangedSubview(minuteLabel)
-        stackView.addArrangedSubview(secondsLabel)
-        view.addSubview(startTimerBtn)
-        view.addSubview(stopTimerBtn)
-        view.addSubview(resetTimerBtn)
-       
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(timerStackView)
+        view.addSubview(btnStackView)
+        
+        let indicators = [hIndicator, mIndicator, sIndicator]
+        for indicator in indicators {
+            indicator.layer.borderWidth = 0
+        }
+        
+        timerStackView.addArrangedSubview(hIndicator)
+        timerStackView.addArrangedSubview(hourLabel)
+        timerStackView.addArrangedSubview(mIndicator)
+        timerStackView.addArrangedSubview(minuteLabel)
+        timerStackView.addArrangedSubview(sIndicator)
+        timerStackView.addArrangedSubview(secondsLabel)
+        
+        
+        btnStackView.addArrangedSubview(startTimerBtn)
+        btnStackView.addArrangedSubview(stopTimerBtn)
+        btnStackView.addArrangedSubview(resetTimerBtn)
         
         appTitle.layer.borderWidth = 0
         

@@ -32,7 +32,7 @@ class CustomLabel: UILabel {
     private func configure(){
         layer.cornerRadius = 5
         layer.borderWidth = 1
-        layer.borderColor = UIColor.tertiaryLabel.cgColor
+        layer.borderColor = UIColor.white.cgColor
         adjustsFontSizeToFitWidth    = true
         minimumScaleFactor = 0.90
         translatesAutoresizingMaskIntoConstraints = false
