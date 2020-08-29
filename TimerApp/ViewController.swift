@@ -123,7 +123,8 @@ class ViewController: UIViewController {
     
     @objc func stopTimer() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.timer.invalidate()
+            guard let running = self.timer else { return }
+            running.invalidate()
         }
     }
     
