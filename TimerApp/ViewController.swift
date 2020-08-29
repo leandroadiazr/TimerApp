@@ -151,21 +151,7 @@ class ViewController: UIViewController {
             stack.distribution = .equalCentering
             stack.translatesAutoresizingMaskIntoConstraints = false
             
-        }
-        
-//        timerStackView.axis = .horizontal
-//        timerStackView.distribution = .equalCentering
-//        
-//        timerStackView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        btnStackView.axis = .horizontal
-//        btnStackView.distribution = .equalCentering
-//        
-//        btnStackView.backgroundColor = .black
-//        btnStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        
-        
+        }   
     }
     
     func configureUI() {
