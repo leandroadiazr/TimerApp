@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     let appTitle            = CustomLabel(backgroundColor: .clear, fontSize: 40, textColor: .systemBlue, textAlignment: .center, title: "Timer App")
     let counterContainer    = CustomContainerView(backgroundColor: .systemBlue)
     let timerStackView      = UIStackView()
@@ -33,7 +32,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        appTitle.text = "Timer App"
         
         startButton()
         stopButton()
@@ -47,7 +45,6 @@ class ViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         timer.invalidate()
-        
     }
     
     func configureTimePicker(){
@@ -142,16 +139,13 @@ class ViewController: UIViewController {
         secCounter = 0
     }
     
-    
-    
     func configureStackView() {
         let hStack = [ timerStackView, btnStackView]
         for stack in hStack {
             stack.axis = .horizontal
             stack.distribution = .equalCentering
             stack.translatesAutoresizingMaskIntoConstraints = false
-            
-        }   
+        }
     }
     
     func configureUI() {
