@@ -27,7 +27,6 @@ extension ViewController {
     func setupConstraints() {
         let screenSize = UIScreen.main.bounds
         let screenWidth: CGFloat = screenSize.width
-        //        let fieldsWdith: CGFloat = stackView.bounds.width
         
         NSLayoutConstraint.activate([
             appTitle.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 6.5),
@@ -95,15 +94,6 @@ extension ViewController {
             resetTimerBtn.widthAnchor.constraint(equalTo: btnStackView.widthAnchor, multiplier: 0.30),
             resetTimerBtn.heightAnchor.constraint(equalToConstant: 40)
         ])
-//        timePicker.frame = CGRect(x: view.frame.width * 0.15, y: view.frame.height * 0.60, width:  view.frame.width * 0.70, height: view.frame.height * 0.30)
-        
         timePicker.frame = CGRect(x: view.frame.width * 0.05, y: view.frame.height / 1.5, width:  view.bounds.width * 0.90, height: 200)
-
-       
-//        timePicker.center = CGPoint(x: view.frame.width / 2, y: view.frame.size.height * 0.75)
-        
-        
     }
-    
-    
 }
